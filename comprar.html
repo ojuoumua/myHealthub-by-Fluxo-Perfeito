@@ -25,42 +25,40 @@
                 <div class="card col-12 col-lg-5 p-3 m-2">
                     <span class="d-block">
                         <img class="img-fluid img-profile rounded-2 mx-auto mb-2"
-                            data-bind="attr: { src: img/paracetamol.jpg; alt: Alt}"
+                            data-bind="attr: { src: Image, alt: Name}"
                             heigth="100"/>
                     </span>
-                    <!-- <img class="rounded" src="img\paracetamol.jpg" alt="Paracetamol"> -->
-                    <div class="h3 mt-2">Paracetamol</div>
-                    <p>Ideal para dor de cabeça </p>
-                    <div class="fw-bold mb-2">4,99€</div>
-                    <button class="btn btn-success" onclick="adicionarAoCarrinho('Paracetamol', 4.99)">Adicionar ao Carrinho</button>
-                </div>
+                    <div class="h3 mt-2" data-bind="text: Name"></div>
+                    <p data-bind="text: Desc"></p>
+                    <div class="fw-bold mb-2"><span data-bind="text: Price"></span>€</div>
+                    <button class="btn btn-success" data-bind="click: $parent.addToCart">Adicionar ao Carrinho</button>
 
-                <div class="card col-12 col-lg-5 p-3 m-2">
-                    <img class="rounded" src="img/benuron.jpg" alt="Ben-u-Run">
-                    <div class="h3 mt-2">ben-u-ron</div>
-                    <p>Ideal para todo o tipo de dor</p>
-                    <div class="price">3,99€</div>
-                    <button class="btn btn-success" onclick="adicionarAoCarrinho('Ben-u-run', 3.99)">Adicionar ao Carrinho</button>
-                </div>
-
-                <div class="card col-12 col-lg-5 p-3 m-2">
-                    <img class="rounded" src="img/brufen.jpg" alt="Brufen">
-                    <div class="h3 mt-2">Brufen</div>
-                    <p>Ideal para inflamações e infeções</p>
-                    <div class="price">5,99€</div>
-                    <button class="btn btn-success" onclick="adicionarAoCarrinho('Brufen', 5.99)">Adicionar ao Carrinho</button>
                 </div>
             </div>
             <div class="col-4">
                 <div class="card p-3 m-2 col-12">
                     <h4>Carrinho</h4>
-                    <p id="cart-items">Nenhum item no carrinho.</p>
-                    <p><strong>Total:</strong> <span id="total-price">0,00</span> € </p>
-                    <button class="btn btn-success" onclick="location.href='FormularioComp.html'">
+                    <!-- Lista de itens no carrinho -->
+                    <ul data-bind="foreach: cart" class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong data-bind="text: Name"></strong> - <span data-bind="text: Price"></span> € </span>
+                            <button class="btn btn-sm btn-danger" data-bind="click: $parent.removeFromCart">Remover</button>
+                        </li>
+                    </ul>
+              
+                    <!-- Exibir mensagem se o carrinho estiver vazio -->
+                    <p data-bind="visible: cart().length === 0">Nenhum item no carrinho.</p>
+              
+                    <!-- Preço total -->
+                    <p><strong>Total:</strong> <span data-bind="text: totalPrice"></span> €</p>
+              
+                    <!-- Botão para finalizar compra -->
+                    <button class="btn btn-success" data-bind="enable: cart().length > 0" onclick="location.href='checkout.html'">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Comprar
                     </button>
                 </div>
-            </div>
+              </div>
+              
         </div>
     </main>
 

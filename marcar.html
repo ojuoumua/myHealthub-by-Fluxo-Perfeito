@@ -18,9 +18,61 @@
     <!--Header-->
     <nav id="header"></nav>
     <!-- Page Content -->
-    <div class="container-lg">
-        
-    </div>
+    <main class="container">
+        <h1 class="text-center mb-4">Marcar Consulta</h1>
+        <form id="marcarConsultaForm">
+            <!-- Especialidade -->
+            <div class="form-group mb-3">
+                <label for="especialidade">Especialidade:</label>
+                <select id="especialidade" class="form-control" required>
+                <option value="">Selecione uma especialidade</option>
+                <option value="cardiologia">Cardiologia</option>
+                <option value="dermatologia">Dermatologia</option>
+                <option value="pediatria">Pediatria</option>
+                <option value="ortopedia">Ortopedia</option>
+                </select>
+            </div>
+
+            <!-- Médico -->
+            <div class="form-group mb-3">
+                <label for="medico">Médico:</label>
+                <select id="medico" class="form-control" required>
+                <option value="">Selecione um médico</option>
+                <option value="dr_silva">Dr. Silva</option>
+                <option value="dra_oliveira">Dra. Oliveira</option>
+                <option value="dr_mendes">Dr. Mendes</option>
+                </select>
+            </div>
+
+            <!-- Data -->
+            <div class="form-group mb-3">
+                <label for="dataConsulta">Data:</label>
+                <input type="date" id="dataConsulta" class="form-control" required>
+            </div>
+
+            <!-- Horário -->
+            <div class="form-group mb-3">
+                <label for="horarioConsulta">Horário:</label>
+                <select id="horarioConsulta" class="form-control" required>
+                <option value="">Selecione um horário</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="14:00">14:00</option>
+                </select>
+            </div>
+
+            <!-- Botão de Submissão -->
+            <button type="submit" class="btn btn-success">Confirmar Marcação</button>
+
+        </form>
+
+        <!-- Mensagem de Sucesso -->
+        <div id="successMessage" class="alert alert-success mt-4 d-none">
+        Consulta marcada com sucesso!
+        </div>
+
+    </main>
 
     <!-- Footer -->
     <nav id="footer"></nav>
