@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Modak&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modak&family=Open+Sans&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/StyleSheet.css" />
@@ -18,10 +18,35 @@
     <!--Header-->
     <nav id="header"></nav>
     <!-- Page Content -->
-    <div class="container-lg">
-        <!-- Historial médico -->
-        
-    </div>
+    <main class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="h2">Histórico Médico</div>
+                <div id="history-cards" data-bind="foreach: history">
+                    <div class="card p-3 col-11 mb-3">
+                        <div class="mb-1"><span class="h4 fw-bold" data-bind="text: data"></span></div>
+                        <div><strong>Descrição: </strong><span data-bind="text: descricao"></span></div>
+                        <div><strong>Estabelecimento: </strong><span data-bind="text: estabelecimento"></span></div>
+                        <!-- ko if: medico -->
+                        <div><strong>Médico: </strong><span data-bind="text: medico"></span></div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="h2">Boletim de Vacinas</div>
+                <div id="vaccine-cards" data-bind="foreach: vaccines">
+                    <div class="card p-3 col-11 mb-3">
+                        <div><strong>Vacina: </strong><span data-bind="text: vacina"></span></div>
+                        <div><strong>Data de Aplicação: </strong><span data-bind="text: dataAplicacao"></span></div>
+                        <!-- ko if: proximaDose -->
+                        <div><strong>Próxima Dose: </strong><span data-bind="text: proximaDose"></span></div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- Footer -->
     <nav id="footer"></nav>
@@ -31,5 +56,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js" integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/script.js"></script>
     <script src="js/theme.js"></script>
+    <script src="js/ver.js"></script>
 </body>
 </html>

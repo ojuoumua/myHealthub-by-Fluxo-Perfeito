@@ -1,0 +1,491 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Compra</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+
+    <style>
+        :root {
+            --cor-fundo-claro: #f4f4f4;
+            --cor-texto-claro: #333;
+            --cor-fundo-escuro: #333;
+            --cor-texto-escuro: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding-top: 70px;
+            margin-bottom: 3vw;
+            background-color: var(--cor-fundo-claro);
+            color: var(--cor-texto-claro);
+            font-family: Arial, sans-serif;
+        }
+
+            body.dark-mode {
+                background-color: var(--cor-fundo-escuro);
+                color: var(--cor-texto-escuro);
+            }
+
+        .menutopo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgb(47, 47, 47);
+            color: white;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+            .menutopo.dark-mode {
+                background-color: rgb(30, 30, 30);
+            }
+
+            .menutopo label {
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+        .clicar {
+            display: none;
+        }
+
+        .listinha {
+            display: none;
+            position: absolute;
+            top: 3rem;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: left;
+            padding: 1rem;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1500;
+        }
+
+            .listinha a {
+                display: block;
+                color: white;
+                text-decoration: none;
+                margin: 0.5rem 0;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+            }
+
+                .listinha a:hover {
+                    background-color: #555;
+                }
+
+        .clicar:checked ~ .listinha {
+            display: block;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .paragrafo {
+            margin-top: 20px;
+            text-align: justify;
+            margin-bottom: 20px;
+            padding-left: 10%;
+            padding-right: 10%;
+            background-color: white;
+        }
+
+        .final {
+            background-color: black;
+            width: 100%;
+            height: 3vw;
+            display: block;
+            padding-left: 10%;
+            padding-right: 10%;
+            color: white;
+            text-align: left;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+            .final.dark-mode {
+                background-color: rgba(0, 0, 0, 0.9);
+            }
+
+        .logo {
+            height: 2rem;
+            width: auto;
+        }
+
+        .frasetopo {
+            display: flex;
+            flex-grow: 1;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .menuclicaveis {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .container {
+            width: 70%;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .order-summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+            .order-summary h3 {
+                margin-top: 0;
+            }
+
+            .order-summary p {
+                margin: 5px 0;
+            }
+
+            .order-summary .total {
+                font-size: 18px;
+                font-weight: bold;
+                color: #333;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                font-size: 16px;
+                color: #333;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+
+            .form-group button {
+                background-color: #28a745;
+                color: white;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 100%;
+            }
+
+                .form-group button:hover {
+                    background-color: #218838;
+                }
+
+        /* Botão Modo Escuro */
+        #themeToggle {
+            margin-left: 10px;
+            margin-right: 15px;
+        }
+
+        body.dark-mode {
+            background-color: #121212; /* Cor de fundo escura */
+            color: white; /* Texto claro */
+        }
+
+            body.dark-mode .container {
+                background-color: #444; /* Fundo escuro do container */
+            }
+
+            body.dark-mode .order-summary {
+                background-color: #555; /* Fundo escuro para as caixinhas */
+            }
+
+            body.dark-mode .form-group input,
+            body.dark-mode .form-group textarea {
+                background-color: #666; /* Fundo escuro para inputs */
+                color: #fff; /* Texto claro nos inputs */
+                border: 1px solid #888; /* Borda clara */
+            }
+
+            body.dark-mode .container {
+                background-color: #444; /* Fundo escuro para o container */
+                color: white; /* Cor do texto dentro do container */
+            }
+
+            body.dark-mode .order-summary {
+                background-color: #555; /* Fundo escuro para as caixinhas */
+                color: white; /* Cor do texto dentro das caixinhas */
+            }
+
+            body.dark-mode .form-group input,
+            body.dark-mode .form-group textarea,
+            body.dark-mode .form-group label {
+                color: white; /* Texto branco nas caixas de entrada e rótulos */
+                background-color: #444; /* Fundo escuro para inputs e textarea */
+            }
+
+            body.dark-mode .form-group button {
+                background-color: #218838; /* Cor de fundo do botão no modo escuro */
+            }
+
+            body.dark-mode h2 {
+                color: white; /* Cor das letras para branco no tema escuro */
+            }
+
+            body.dark-mode input::placeholder {
+                color: white;
+            }
+
+            body.dark-mode textarea::placeholder {
+                color: white;
+            }
+
+            body.dark-mode .order-summary {
+                background-color: #555; /* Fundo escuro para a área de resumo */
+                color: white; /* Texto branco */
+            }
+
+        body:not(.dark-mode) .order-summary h3,
+        body:not(.dark-mode) .order-summary span,
+        body:not(.dark-mode) .order-summary strong {
+            color: black; /* Torna o texto preto no tema claro */
+        }
+
+        .menufav {
+            margin-left: auto;
+            display: flex; /* Flexbox para alinhar ícone e texto */
+            align-items: center; /* Centraliza verticalmente ícone e texto */
+            padding-right: 20px;
+            color: white; /* Define a cor branca para o texto e ícone */
+            text-decoration: none; /* Remove o sublinhado */
+            font-size: 16px; /* Ajusta o tamanho do texto */
+        }
+    </style>
+    <link rel="stylesheet" href="css/services.css">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo-MAS.jpeg" alt="Logo MyHealthy'Ub" class="logo-img">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="services.html">Serviços</a></li>
+                <li><a href="reviews.html">Críticas</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+            <a href="login.html" class="login-btn">Login</a>
+
+        </div>
+    </header>
+
+    <header>
+        <h1>Farmácia Online</h1>
+        <p>Compre os melhores produtos!</p>
+    </header>
+
+    <div class="container">
+        <h2>Carrinho</h2>
+
+        <div class="order-summary">
+            <h3>Resumo do Pedido:</h3>
+            <p><strong>Produtos:</strong> <span id="produtos"></span></p>
+            <p><strong>Total:</strong> <span id="total-pedido">0,00</span> €</p>
+        </div>
+
+        <form id="form-compra" action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Nome Completo:</label>
+                <input type="text" id="name" name="name" required placeholder="Digite o seu nome completo...">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required placeholder="Digite o seu email...">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Morada de Entrega:</label>
+                <textarea id="address" name="address" rows="4" required placeholder="Digite a sua morada..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="payment">Forma de Pagamento:</label><br>
+                <input type="radio" id="credit" name="payment" value="cartao de credito" required>
+                <label for="credit">Cartão de Crédito</label><br>
+                <input type="radio" id="debit" name="payment" value="cartao de debito">
+                <label for="debit">Cartão paypal</label><br>
+                <input type="radio" id="boleto" name="payment" value="boleto">
+                <label for="boleto">MB Way</label><br>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Confirmar Compra</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        // Recuperando os dados do carrinho
+        let carrinho = JSON.parse(localStorage.getItem('carrinho'));
+
+        if (carrinho) {
+            document.getElementById('produtos').innerText = carrinho.itens.join(", ");
+            document.getElementById('total-pedido').innerText = carrinho.total.toFixed(2);
+        }
+
+        // Função para validar o formulário e exibir a mensagem de "Compra Efetuada"
+        document.getElementById('form-compra').addEventListener('submit', function (e) {
+            e.preventDefault(); // Previne o envio do formulário para fins de validação
+
+            // Verificando se o carrinho está vazio
+            if (!carrinho || carrinho.total <= 0) {
+                alert("Carrinho vazio! Adicione itens ao carrinho.");
+                return;
+            }
+
+            // Verificando se todos os campos obrigatórios estão preenchidos
+            const nome = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const endereco = document.getElementById('address').value;
+            const pagamento = document.querySelector('input[name="payment"]:checked');
+
+            if (!nome || !email || !endereco || !pagamento) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            // Se tudo estiver correto, exibe a mensagem de compra efetuada
+            alert("Compra efetuada com sucesso!");
+        });
+
+        const themeToggleButton = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Verifica a preferência do tema ao carregar a página
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        // Alterna entre os temas
+        themeToggleButton.addEventListener('click', function () {
+            body.classList.toggle('dark-mode');
+            // Salva a preferência do usuário
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        document.getElementById("themeToggle").addEventListener("click", () => {
+            const body = document.getElementById("mainBody");
+            const button = document.getElementById("themeToggle");
+
+            if (body.classList.contains("bg-light")) {
+                // Modo Escuro
+                body.classList.remove("bg-light", "text-dark");
+                body.classList.add("bg-dark", "text-light");
+
+                // Atualizar o ícone para "modo claro" (sol)
+                button.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>';
+                button.classList.remove("btn-dark");
+                button.classList.add("btn-light");
+
+                // Salvar o tema no localStorage
+                localStorage.setItem("theme", "dark");
+            } else {
+                // Modo Claro
+                body.classList.remove("bg-dark", "text-light");
+                body.classList.add("bg-light", "text-dark");
+
+                // Atualizar o ícone para "modo escuro" (lua)
+                button.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>';
+                button.classList.remove("btn-light");
+                button.classList.add("btn-dark");
+
+                // Salvar o tema no localStorage
+                localStorage.setItem("theme", "light");
+            }
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.getElementById("mainBody");
+            const button = document.getElementById("themeToggle");
+            const savedTheme = localStorage.getItem("theme"); // Recuperar tema salvo
+
+            if (savedTheme === "dark") {
+                body.classList.add("bg-dark", "text-light");
+                body.classList.remove("bg-light", "text-dark");
+                button.innerHTML = '<i class="fa fa-sun-o" aria-hidden="true"></i>'; // Ícone de sol para modo claro
+                button.classList.remove("btn-dark");
+                button.classList.add("btn-light");
+            } else {
+                body.classList.add("bg-light", "text-dark");
+                body.classList.remove("bg-dark", "text-light");
+                button.innerHTML = '<i class="fa fa-moon-o" aria-hidden="true"></i>'; // Ícone de lua para modo escuro
+                button.classList.remove("btn-light");
+                button.classList.add("btn-dark");
+            }
+        });
+
+    </script>
+
+</body>
+</html>

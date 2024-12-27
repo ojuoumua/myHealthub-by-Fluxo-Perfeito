@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Modak&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modak&family=Open+Sans&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/StyleSheet.css" />
@@ -18,9 +18,51 @@
     <!--Header-->
     <nav id="header"></nav>
     <!-- Page Content -->
-    <div class="container-lg">
-        
-    </div>
+    <main class="container">
+        <div class="row">
+            <div class="h2">Farmácia</div>
+            <div id="products" class="row col-8" data-bind="foreach: products">
+                <div class="card col-12 col-lg-5 p-3 m-2">
+                    <span class="d-block">
+                        <img class="img-fluid img-profile rounded-2 mx-auto mb-2"
+                            data-bind="attr: { src: img/paracetamol.jpg; alt: Alt}"
+                            heigth="100"/>
+                    </span>
+                    <!-- <img class="rounded" src="img\paracetamol.jpg" alt="Paracetamol"> -->
+                    <div class="h3 mt-2">Paracetamol</div>
+                    <p>Ideal para dor de cabeça </p>
+                    <div class="fw-bold mb-2">4,99€</div>
+                    <button class="btn btn-success" onclick="adicionarAoCarrinho('Paracetamol', 4.99)">Adicionar ao Carrinho</button>
+                </div>
+
+                <div class="card col-12 col-lg-5 p-3 m-2">
+                    <img class="rounded" src="img/benuron.jpg" alt="Ben-u-Run">
+                    <div class="h3 mt-2">ben-u-ron</div>
+                    <p>Ideal para todo o tipo de dor</p>
+                    <div class="price">3,99€</div>
+                    <button class="btn btn-success" onclick="adicionarAoCarrinho('Ben-u-run', 3.99)">Adicionar ao Carrinho</button>
+                </div>
+
+                <div class="card col-12 col-lg-5 p-3 m-2">
+                    <img class="rounded" src="img/brufen.jpg" alt="Brufen">
+                    <div class="h3 mt-2">Brufen</div>
+                    <p>Ideal para inflamações e infeções</p>
+                    <div class="price">5,99€</div>
+                    <button class="btn btn-success" onclick="adicionarAoCarrinho('Brufen', 5.99)">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card p-3 m-2 col-12">
+                    <h4>Carrinho</h4>
+                    <p id="cart-items">Nenhum item no carrinho.</p>
+                    <p><strong>Total:</strong> <span id="total-price">0,00</span> € </p>
+                    <button class="btn btn-success" onclick="location.href='FormularioComp.html'">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Comprar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- Footer -->
     <nav id="footer"></nav>
@@ -30,5 +72,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js" integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/script.js"></script>
     <script src="js/theme.js"></script>
+    <script src="js/comprar.js"></script>
 </body>
 </html>

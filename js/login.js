@@ -61,7 +61,7 @@
         const today = new Date().toISOString().split('T')[0];
         var _date = today.split('-')
         var _18yAgo = [(parseInt(_date[0])-18).toString(), _date[1], _date[2]].join('-')
-        console.log(_18yAgo)
+        // console.log(_18yAgo)
         $('#birthDate').prop('max', _18yAgo)
 
         // Validate new user
@@ -93,7 +93,7 @@
             }
             else { $('#fullNameError').hide() }
             // Check if email is already registered
-            if (users.find((user) => user.email == $('#email').val())) { 
+            if (users.find((user) => user.email == email)) { 
                 valid = false;
                 $('#emailError').html('O email introduzido já está registado')
                 $('#emailError').show() 

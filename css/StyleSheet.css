@@ -8,15 +8,15 @@
     font-size: 1.7rem;
 }  
 body {
-    padding: 68px 0 56px 0; 
+    padding: 4rem 0 0 0; 
     font-family: 'Open Sans', "sans-serif";
 }
 main { 
-    padding: 1rem 0 68px 0;
+    padding: 1.5rem 0 4.5rem 0;
 
 }
 .bannerTop{
-    height: 480px; margin: auto; background-position: center center; background-repeat: no-repeat; background-size: cover;
+    height: 1rem; margin: auto; background-position: center center; background-repeat: no-repeat; background-size: cover;
 }
 /* button default
 ---------------------------- */

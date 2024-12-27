@@ -86,7 +86,7 @@
         document.getElementById('header').classList = 'navbar navbar-expand-lg fixed-top bg-body-tertiary border-bottom';
         document.getElementById('header').innerHTML = `<div class="container-lg">
             <!-- Home -->
-            <a class="navbar-brand modak-regular text-success" href="index.html" title="Página Inicial" data-bind="text: displayName""><img data-bind="attr: {src: Logo}" height="25"/></a>
+            <a class="navbar-brand modak-regular text-success" href="index.html" title="Página Inicial">myHealth'ub<!--<img data-bind="attr: {src: Logo}" height="25"/>--></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -136,7 +136,7 @@
     }
 
     const loadFooter = () => {
-        document.getElementById('footer').classList = "navbar fixed-bottom bg-body-tertiary border-top";
+        document.getElementById('footer').classList = "navbar fixed-bottom bg-body-tertiary border-top d-none d-lg-block";
         document.getElementById('footer').innerHTML = `
             <div class="container small">
                 <div class="navbar-text">&copy; myHealth'ub 2024</div>
