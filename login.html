@@ -7,9 +7,7 @@
     <title>Página Inicial</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Modak&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Modak&family=Open+Sans&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/StyleSheet.css" />
@@ -18,45 +16,153 @@
     <!--Header-->
     <nav id="header"></nav>
     <!-- Page Content -->
-        <h1>Acesse sua conta</h1>
-    <div class="auth-container">
-      <!-- Quando não logado: Exibe formularios -->
-      <!-- Quando logado: Exibe informações do usuário -->
+    <!-- <h1>Acesse sua conta</h1> -->
+    <main>
+        <!-- Conteúdo para usuário logado (inicialmente oculto) -->
+        <!-- <div class="user-info" id="userInfo">
+            <h2>Informações da sua conta</h2>
+            <div id="userDetails"></div>
+            <button id="logoutBtn">Sair da conta</button>
+        </div> -->
 
-      <!-- Conteúdo para usuário logado (inicialmente oculto) -->
-      <div class="user-info" id="userInfo" style="display:none;">
-        <h2>Informações da sua conta</h2>
-        <div id="userDetails"></div>
-        <button id="logoutBtn">Sair da conta</button>
-      </div>
+        <!-- Login Form-->
+        <div class="container p-3 border border-1 rounded m-auto col-11 col-sm-8 col-md-6" id="loginContainer">
+            <h2 class="mb-3">Login</h2>
+            <form class="form" id="loginForm" novalidate>
+                <div class="form-group">
+                    <input id="loginEmail" class="form-control mb-3" type="email" name="loginEmail" placeholder="Email" maxlength="100">
+                    <div id="loginEmailError"     class="mb-3 text-danger small invalid-feedback fw-bold"><i class="fa fa-times-circle"></i> Utilizador inválido</div>
+                    <input id="loginPassword" class="form-control mb-3" type="password" name="loginPassword" placeholder="Palavra-passe" maxlength="100">
+                    <div id="loginPasswordError"  class="mb-3 text-danger small invalid-feedback fw-bold"><i class="fa fa-times-circle"></i> Palavra-passe incorreta</div>
+                    <button id="loginBtn" class="btn btn-success w-100 mb-2" type="submit">Entrar</button>
+                </div>
+            </form>
+            <div class="">Não tem conta? <a href="#" class="text-success text-decoration-none" type="button" id="showSignupForm">Crie uma</a></div>
+        </div>
 
-      <!-- Formulário de Login -->
-      <div class="form-container" id="loginContainer" style="display:none;">
-        <h2>Login</h2>
-        <form id="loginForm">
-          <input type="email" name="loginEmail" placeholder="Email" required>
-          <input type="password" name="loginPassword" placeholder="Senha" required>
-          <button type="submit">Entrar</button>
-        </form>
-        <p class="toggle-form-text">Não tem conta? <a href="#" id="showRegisterForm">Crie uma</a></p>
-      </div>
-
-      <!-- Formulário de Cadastro -->
-      <div class="form-container" id="registerContainer" style="display:none;">
-        <h2>Criar Conta</h2>
-        <form id="registerForm">
-          <input type="text" name="fullName" placeholder="Nome Completo" required>
-          <input type="text" name="healthId" placeholder="Número Utente de Saúde" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="password" name="password" placeholder="Senha" required>
-          <input type="password" name="confirmPassword" placeholder="Confirmar Senha" required>
-          <input type="date" name="birthDate" required>
-          <input type="tel" name="phone" placeholder="Contato Telefônico" required>
-          <button type="submit">Criar Conta</button>
-        </form>
-        <p class="toggle-form-text">Já tem conta? <a href="#" id="showLoginForm">Faça login</a></p>
-      </div>
-    </div>
+        <!-- Signup Form -->
+        <div class="container p-3 border border-1 rounded m-auto col-11 col-sm-8 col-md-6" id="signupContainer">
+            <h2>Criar Conta</h2>
+            <ul class="nav nav-tabs mb-2" id="myTab" role="tablist">
+            <li class="nav-item col" role="presentation">
+                <button class="nav-link active col-12 text-success fw-bold" id="user-tab" data-bs-toggle="tab" type="button" aria-selected="true">Utente</button>
+            </li>
+            <li class="nav-item col" role="presentation">
+                <button class="nav-link col-12 text-success" id="admin-tab" data-bs-toggle="tab" type="button" aria-selected="false">Técnico</button>
+            </li>
+            </ul>
+            <form class="form needs-validation" id="signupForm" novalidate>
+                <!-- User Role -->
+                <input
+                    id="role" 
+                    class="form-control mb-3 d-none" 
+                    type="text"
+                    value="utente"
+                    required>
+                <!-- Full Name -->
+                <input 
+                    id="fullName"
+                    class="form-control mb-3" 
+                    type="text" 
+                    placeholder="Nome Completo"
+                    required
+                    minlength="15"
+                    maxlength="100"
+                    pattern="[A-Za-z ]{15,}">
+                <div 
+                    id="fullNameError"
+                    class="mb-3 text-danger small invalid-feedback fw-bold"
+                    name="error">
+                    O nome completo deve ter pelo menos 2 nomes e 15 letras
+                </div>
+                <!-- Health ID -->
+                <input 
+                    id="healthId" 
+                    class="form-control mb-3" 
+                    type="text" 
+                    placeholder="Número Utente de Saúde"
+                    required
+                    maxlength="9"
+                    pattern="[0-9]{9}">
+                <div 
+                    id="healthIdError"
+                    class="mb-3 text-danger small invalid-feedback fw-bold"
+                    name="error">
+                    O número deve ter 9 algarismos
+                </div>
+                <!-- Email -->
+                <input 
+                    id="email" 
+                    class="form-control mb-3" 
+                    type="email" 
+                    placeholder="Email"
+                    required
+                    maxlength="100"
+                    pattern="[a-z0-9._\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                <div 
+                    id="emailError"
+                    class="mb-3 text-danger small invalid-feedback fw-bold"
+                    name="error">
+                    O email não tem um formato válido
+                </div>
+                <!-- Password -->
+                <input 
+                    id="password" 
+                    class="form-control mb-3" 
+                    type="password" 
+                    placeholder="Palavra-passe"
+                    required
+                    maxlength="100"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+                <div 
+                    id="passwordError"
+                    class="mb-3 text-danger small invalid-feedback fw-bold"
+                    name="error">
+                    Palavra-passe inválida
+                </div>
+                <!-- Confirm Password -->
+                <input 
+                    id="confirmPassword" 
+                    class="form-control mb-3" 
+                    type="password" 
+                    placeholder="Confirmar Palavra-passe"
+                    required
+                    maxlength="100"
+                    >
+                <div 
+                    id="confirmPasswordError"
+                    class="mb-3 text-danger small invalid-feedback fw-bold"
+                    name="error">
+                    A palavra-passe não é igual à introduzida
+                </div>
+                <!-- Birth Date -->
+                <input 
+                    id="birthDate" 
+                    class="form-control mb-3" 
+                    type="date"
+                    required
+                    min="1900-01-01"
+                    max="2006-12-20">
+                <div 
+                    id="birthDateError"
+                    class="mb-3 text-danger small invalid-feedback fw-bold"
+                    name="error">
+                    Data inválida. Tem de ter mais de 18 anos
+                </div>
+                <!-- Phone -->
+                <input 
+                    id="phone" 
+                    class="form-control mb-3" 
+                    type="tel" 
+                    placeholder="Contacto Telefónico"
+                    maxlength="20"
+                    pattern="[+ 0-9]{9,}"
+                    >
+                <button class="btn btn-success w-100 mb-2" type="submit">Criar Conta</button>
+            </form>
+            <div class="">Não tem conta? <span class="text-success text-decoration-none" type="button" id="showLoginForm">Faça login</span></div>
+        </div>
+    </main>
 
     <!-- Footer -->
     <nav id="footer"></nav>

@@ -83,8 +83,8 @@
 
     const loadHeader = () => {
         // Build Header
-        $('#header').addClass('navbar navbar-expand-lg fixed-top bg-body-tertiary border-bottom');
-        $('#header').html(`<div class="container-lg">
+        document.getElementById('header').classList = 'navbar navbar-expand-lg fixed-top bg-body-tertiary border-bottom';
+        document.getElementById('header').innerHTML = `<div class="container-lg">
             <!-- Home -->
             <a class="navbar-brand modak-regular text-success" href="index.html" title="Página Inicial" data-bind="text: displayName""><img data-bind="attr: {src: Logo}" height="25"/></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,13 +92,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!--Links-->
-                <ul id="showLinks" class="navbar-nav me-auto mb-2 mb-lg-0 d-none" >
+                <ul id="showLinks" class="navbar-nav mb-lg-0 d-none" >
                     <li><a id="ver" class="nav-link" aria-current="page" href="ver.html"><i class="fa fa-eye text-success"></i> Ver</a></li>
                     <li><a id="marcar" class="nav-link" aria-current="page" href="marcar.html"><i class="fa fa-plus text-success"></i> Marcar</a></li>
                     <li><a id="comprar" class="nav-link" aria-current="page" href="comprar.html"><i class="fa fa-shopping-cart text-success"></i> Comprar</a></li>
                 </ul>
+                <hr class="mx-auto"></hr>
                 <!--Theme Toggle-->
-                <ul class="navbar-nav justify-content-end me-3" id="bd-theme">
+                <ul class="navbar-nav justify-content-end" id="bd-theme">
                     <!--<li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="light" aria-pressed="false"><i class="theme-icon fa fa-sun-o"      title="Modo claro" ></i></div></li>-->
                     <li class="nav-item"><div class="nav-link" type="button" id="btnSwitcher" aria-pressed="true"><i class="theme-icon fa fa-toggle-off" title="Mudar tema"></i> Dark Mode</div></li>
                     <!--<li class="nav-item"><div class="nav-link" type="button" data-bs-theme-value="dark"  aria-pressed="false"><i class="theme-icon fa fa-moon-o"     title="Modo escuro"></i></div></li>-->
@@ -112,8 +113,8 @@
                     <li><a id="logout" href="index.html" class="nav-link text-danger"><i class="fa fa-sign-out"></i> Logout</a></li>
                 </ul>
             </div>
-        </div>`);
-
+        </div>`;
+       
         //--- Show buttons or login
         if (localStorage.isLogged == 'true') {
             $('#showLinks').removeClass('d-none')
@@ -135,15 +136,15 @@
     }
 
     const loadFooter = () => {
-        $("#footer").addClass("navbar fixed-bottom bg-body-tertiary border-top")
-        $("#footer").html(`
+        document.getElementById('footer').classList = "navbar fixed-bottom bg-body-tertiary border-top";
+        document.getElementById('footer').innerHTML = `
             <div class="container small">
                 <div class="navbar-text">&copy; myHealth'ub 2024</div>
                 <div class="navbar-text">Made by Fluxo Perfeito</div>
                 <!-- <div class="navbar-nav">
                     <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
                 </div> -->
-            </div>`)
+            </div>`;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -152,6 +153,7 @@
         showActiveTheme(getPreferredTheme())
         $('#showLogout').click(function(){
             localStorage.isLogged = 'false'
+            delete localStorage.currentUser
         })
 
         document.querySelectorAll('[data-bs-theme-value]')

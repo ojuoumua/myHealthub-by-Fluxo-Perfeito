@@ -1,19 +1,22 @@
-﻿.modak-regular {
+﻿html, body {
+    height: 100%;
+}
+.modak-regular {
     font-family: "Modak", serif;
     font-weight: 400;
     font-style: normal;
     font-size: 1.7rem;
-  }
-  
+}  
 body {
-    padding: 68px 0 56px 0; font-family: 'Open Sans', "sans-serif";
+    padding: 68px 0 56px 0; 
+    font-family: 'Open Sans', "sans-serif";
 }
 main { 
-    padding: 5px 0 5px 0;
+    padding: 1rem 0 68px 0;
 
 }
 .bannerTop{
-     height: 480px; margin: auto; background-position: center center; background-repeat: no-repeat; background-size: cover;
+    height: 480px; margin: auto; background-position: center center; background-repeat: no-repeat; background-size: cover;
 }
 /* button default
 ---------------------------- */
@@ -34,13 +37,13 @@ main {
     color: #333;
     background-color: #e6e6e6;
     border-color: #adadad;
-}
+} */
 
 /* button-xs
 ---------------------------- */
-/* .btn-group-xs > .btn, .btn-xs { */
-    /* padding: 1px 5px;
+/* .btn-group-xs > .btn, .btn-xs {
+    padding: 1px 5px;
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
-} */ 
+} */
