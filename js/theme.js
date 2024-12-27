@@ -129,9 +129,9 @@
         }
 
         //--- Highlight active page
-        var page = window.location.pathname;
-        page = page.substring(1, page.length-5);
-        $('#' + page).addClass('active');
+        var page = window.location.pathname.split('/')[1];
+        page = page.substring(0, page.length-5);
+        if (['ver','marcar','comprar'].includes(page)) { $('#' + page).addClass('active') }
         console.log(page)
     }
 
